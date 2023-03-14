@@ -1,0 +1,72 @@
+<% layout('layouts/boilerplate')%>
+    <div class="row">
+        <h1 class="text-center">Eidt Campground</h1>
+        <div class="col-6 offset-3">
+            <form action="/kidgrounds/<%=kidground._id%>?_method=PUT" method="POST" novalidate class="validated-form" 
+                enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label class="form-label" for="title">Title</label>
+                    <input class="form-control" type="text" id="title" name="kidground[title]"
+                        value="<%=kidground.title%> " required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="title">Location</label>
+                    <input class="form-control" type="text" id="location" name="kidground[location]"
+                        value="<%=kidground.location%> " required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">Add More Images</label>
+                    <input class="form-control" type="file" id="image" name="image" multiple  >
+                  </div>
+                <!-- <div class="mb-3">
+                    <label class="form-label" for="image">Add Images</label> -->
+                <!-- <input type="file" name="image" id="image" multiple> -->
+
+                <div class="mb-3">
+                    <label class="form-label" for="price">Kidground Price</label>
+                    <div class="input-group">
+                        <span class="input-group-text" id="price-label">$</span>
+                        <input type="text" class="form-control" placeholder="0.00" aria-label="price-label"
+                            aria-describedby="price-label" name="kidground[price]" value="<%=kidground.price%> "
+                            required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                </div> 
+
+
+
+                <div class="mb-3">
+                    <label class="form-label" for="description">Description</label>
+                    <textarea class="form-control" type="text" id="location" name="kidground[description]" required> <%=kidground.description%>  
+                </textarea>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+
+
+                <div class="mb-3">
+                    <% kidground.images.forEach(function(img, i){ %>
+
+                        <img src="<%=img.thumbnail%> " class="img-thumbnail" alt=""> 
+                        <div class="form-check-inline">
+                            <input type="checkbox" id="image-<%=i%>" name="deleteImages[]" value="<%=img.filename%>">
+                        </div>
+                        <label for="image-<%=i %>">Delete?</label> 
+                    <% }) %> 
+                </div>
+                <div class="mb-3">
+                    <button class=" btn btn-info">Update Kidground</button>
+                </div>
+            </form>
+            <a href="/kidgrounds">All Kidgrounds</a>
+        </div>
+    </div>

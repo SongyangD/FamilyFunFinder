@@ -1,0 +1,25 @@
+<% layout('layouts/boilerplate')%>
+<h1>Kidgrounds</h1>
+<div>
+    <a href="/kidgrounds/new">Add Kidground</a>
+</div>
+
+<% for (let kidground of kidgrounds){ %>
+<div class="card" mb-3>
+    <div class="row">
+        <div class="col-md-4">
+            <img class="img-fluid" alt="" src="<%=kidground.images[0].url%>">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title"><%= kidground.title %></h5>
+                <p class="card-text"><%= kidground.description %></p>
+                <p class="card-text">
+                    <small class="text-muted"><%= kidground.location %></small>
+                </p>
+                <a class="btn btn-primary" href="/kidgrounds/<%=kidground._id%> ">View <%=kidground.title%> </a>
+            </div>
+        </div>
+    </div>
+</div>
+<% } %>
